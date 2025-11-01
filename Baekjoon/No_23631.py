@@ -1,34 +1,17 @@
-from stack_solution import *
-from Baekjoon.No_1158 import sol
-from Programmers import *
-from Baekjoon import *
 import sys
+input = sys.stdin.readline
 from math import sqrt
-from 10757 import *
 
 def sol(N, K):
     n = int((-1 + sqrt(1+8*(N-1)/K))/2)
-    A = 0
-    for i in range(1, N+1):
-        if K * i * (i + 1) // 2 >= N:
-            A = i
-            break
     if n % 2 != 0: # n is odd
-        distance = K*(n+1)**2//2 - (N-1)
+        distance = K*(n+1)**2//2 - (N - 1)
         direction = 'L'
     else: # n is even
-        
-        distance = N - 1 - K*n*(n+2)//2
+        distance = -1*K*n*(n+2)//2 + (N - 1)
         direction = 'R'
-    if A % 2 != 0:
-        distance_= K * (A // 2 + 1) - K * A * (A + 1) // 2 + (N - 1)
-        dir_ = 'R'
-    else:
-        distance_ = -1 * K * (A // 2) + K * A * (A + 1) // 2 - (N - 1)
-        dir_ = 'L'
     print(str(distance)+' '+direction+' | n='+str(n))
-    print(str(distance_)+' '+dir_+' | A='+str(A))
-
+    
 def sol_main(N,K):
     pos = 1
     out_lines = []
@@ -92,46 +75,14 @@ def sol_main(N,K):
     sys.stdout.write("\n".join(out_lines))
     print()
 
-def solution42993(skill, skill_trees):
-    answer = 0
-    answer_lst = list()
-    for idx in skill_trees:
-        skill_lst = list(skill)
-        pos_idx = -1
-        tree_idx = 0
-        skill_idx = 0
-        COUNT = True
-        while True:
-            # 현재 skill 순서를 pos_idx에 기록
-            # case : skill_lst == item
-            # pos_idx 현재 인덱스 위치 저장
-            # If pos_idx가 크면 continue
-            # continue해서 문제없이 반복문 끝나면 answer += 1
-            # 작으면 break
-            # print(tree_idx)
-            if tree_idx == len(idx) or skill_idx == len(skill_lst):
-                break
-            if skill_lst[skill_idx] == idx[tree_idx]:
-                skill_idx += 1
-                tree_idx = 0
-                if pos_idx < tree_idx:
-                    pos_idx = tree_idx
-                    continue
-                    # print(pos_idx)
-                else:
-                    COUNT = False
-                    break
-            tree_idx += 1 # idx 다음 위치로 이동
-            
-            
-        if skill_idx == len(skill_lst) or COUNT == True:
-            print(idx)
-            print(skill_idx)
-            answer += 1
-            answer_lst.append(idx)
-    print(answer_lst)
-    return answer
-if __name__ == "__main__":
-    #print(solution42993("CBD",["BACDE", "CBADF", "AECB", "BDA"]))
-    # print(solution42993("CBD",["BDA"]))
-    #print(sol_10757())
+# if __name__ == "__main__":
+#     # T = int(input())
+#     # for _ in range(T):
+#     #     N, K = map(int, input().split())
+#     #     sol(N, K)
+#     sol(15,3)
+#     sol(7,2)
+#     sol(20,7)
+#     sol(3,2)
+#     sol(8,2)
+#     sol(5,1)
