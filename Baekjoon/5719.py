@@ -29,7 +29,7 @@ def sol():
                     heapq.heappush(pq, (cost, next))
         return distance
 
-    def dijkstra_remove(graph, graph_rev, D, N):
+    def dijkstra_remove(graph, graph_rev, D, N, distance):
 
         distance_rev = [INF] * N
         distance_rev[D] = 0
@@ -69,7 +69,7 @@ def sol():
         if distance[D] == INF:
             print(-1)
             continue
-        dijkstra_remove(graph, graph_rev, D, N)
+        dijkstra_remove(graph, graph_rev, D, N, distance)
 
         distance = [INF] * N
         distance[S] = 0
